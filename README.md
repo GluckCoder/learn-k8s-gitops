@@ -70,3 +70,21 @@ untuk mematikannya lagi tinggal tekan Ctrl+C
 (bungkus kode main.go menjadi image)
 3. docker build -t golang-pemula:v1 .
 4. kind load docker-image golang-pemula:v1 --name kind
+
+Next session - argoCD
+buat ruang terpisah (namespace)
+# Langkah-langkah Instalasi
+## 1. Buat namespace baru bernama argocd:
+```kubectl create namespace argocd```
+## 2. Terapkan file manifest resmi Argo CD:
+```kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml```
+## 3. Pantau status pod hingga semuanya berjalan:
+```kubectl get pods -n argocd```
+
+# Cara Mengakses Dashboard
+## 1. Lakukan port forwarding untuk membuka dashboard dari komputer lokal:
+```kubectl port-forward svc/argocd-server -n argocd 8081:443```
+## 2. Buka browser dan akses alamat 
+https://localhost:8080
+## 3. Ambil kata sandi awal (username: admin) dengan perintah:
+```kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d```

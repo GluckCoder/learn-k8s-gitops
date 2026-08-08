@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: golang-deployment
 spec:
-  replicas: 2 # Kita minta Kubernetes menyalakan 2 buah aplikasi sekaligus untuk backup otomatis!
+  replicas: 4 # Kita minta Kubernetes menyalakan 2 buah aplikasi sekaligus untuk backup otomatis!
   selector:
     matchLabels:
       app: golang-app
